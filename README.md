@@ -28,7 +28,7 @@
 
 ### Incremental Credit Opportunity
 
-![Incremental Credit Opportunity by Segment](images/borrower_eligibility_matrix2.png)
+![Incremental Credit Opportunity by Segment](borrower_eligibility_matrix2.png)
 
 By applying the 1.5x limit expansion exclusively to Tier 1 borrowers, the model projects the potential incremental credit line (in KES) available across different employment segments and regions. 
 
