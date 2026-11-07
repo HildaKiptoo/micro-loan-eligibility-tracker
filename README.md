@@ -1,44 +1,52 @@
-# 📊 Microfinance Loan Portfolio Analytics & Eligibility Tracker
+# Microfinance Credit Risk & Eligibility Analytics
 
-## 📝 Executive Summary
-This project simulates a real-world micro-lending environment to analyze credit risk, credit limit utilization, and repayment discipline. Using Python, a synthetic relational database of borrowers and their historical loan transactions was engineered to build a **Borrower Eligibility Matrix**. 
+![Borrower Eligibility Matrix](images/borrower_eligibility_matrix.png)
 
-The primary objective is to programmatically identify prime candidates for targeted cross-selling and upselling campaigns based on their historical repayment behavior and current credit limit utilization.
+## 📌 Executive Summary
+**The Business Problem:** Microfinance institutions must balance expanding financial access with managing default risk. Lenders need a reliable, automated way to evaluate borrower repayment discipline to confidently offer credit limit expansions without exposing the business to bad debt.
 
-## 🛠️ Technical Stack
-* **Data Engineering & Manipulation:** Python (Pandas, NumPy)
-* **Synthetic Data Generation:** Faker
-* **Data Visualization:** Plotly Express
-* **Environment:** Jupyter Notebooks
+**The Solution:** I engineered a programmatic credit scoring engine and a synthetic micro-lending database using Python. The project evaluates borrower repayment history and automatically segments users into risk tiers, visualized through interactive Plotly charts. 
 
-## 🗄️ Data Architecture
-The project is built on a custom-generated star schema designed for both Python analytics and standard BI reporting tools:
+**Business Impact:** This automated scoring logic allows credit teams to instantly identify the top percentage of "Tier 1: Prime" borrowers eligible for credit limit expansion, removing manual guesswork and optimizing the loan portfolio's profitability.
 
-* **`dim_borrowers`**: Contains demographic and financial profiles (Income, Employment Segment, Initial Credit Limits, Onboarding Dates).
-* **`fact_loans`**: A transactional table recording thousands of individual loan disbursements, interest fees, tenure lengths, and precise repayment statuses (`Repaid Early`, `On-Time`, `Late`, `High Risk`).
+---
 
-## 📈 Key Insights & Visualizations
+## 🛠️ Tools & Technologies Used
+* **Data Engineering (Synthetic):** Python (Pandas, NumPy, Faker)
+* **Interactive Visualization:** Plotly
+* **Development Environment:** Jupyter Notebook
+* **Domain Context:** Micro-lending, Credit Risk Scoring, Kenyan Shillings (KES) Denomination
 
-### 1. Borrower Eligibility Matrix
-This scatter plot segments users based on their average days from the due date versus their credit limit utilization. It successfully isolates "Tier 1" prime borrowers who pay on time (negative average days from due date) and actively utilize their limits (near or above the 85% utilization target), categorizing them as ready for a 1.5x limit top-up. The visualization includes interactive hover data displaying granular borrower details, such as employment segment, current credit limit, and specific campaign tiering.
+---
 
-![Borrower Eligibility Matrix](borrower_eligibility_matrix.png)
+## 📊 Key Insights & Scoring Model
+*(Note: As the data is synthetic, these findings demonstrate the logic and capability of the scoring engine.)*
 
-### 2. Tier 1 Incremental Credit Opportunity by Segment and Region
-This bar chart projects the potential portfolio growth by offering the targeted incremental credit lines (in KES) strictly to the Tier 1 prime borrowers. It breaks down the monetary opportunity across key employment segments—Agri-Vendor, Gig / Boda Operator, SME Trader, and Salaried Worker—and geographic regions. The analysis reveals that SME Traders in Nairobi represent the highest-value expansion target at 3.0M KES, followed by Salaried Workers in Nairobi at 1.9M KES.
+1. **Automated Tiering:** The scoring engine successfully segments borrowers into four distinct campaign categories based on historical repayment consistency and limit utilization.
+2. **Expansion Targeting (Tier 1):** The model isolated a specific cohort of highly disciplined borrowers ("Ready for 1.5x Limit Top-Up") who consistently clear their micro-loans early or exactly on time, while maintaining over 85% credit utilization.
+3. **Risk Mitigation (Tier 4):** Borrowers averaging more than 5 days late on payments are automatically flagged for a "Risk Hold / Freeze," regardless of their utilization rate.
 
-![Tier 1 Credit Opportunity](borrower_eligibility_matrix2.png)
+### Incremental Credit Opportunity
 
-## 🧠 Core Analytical Logic
-* **Risk Personas:** Engineered synthetic personas (`Prime`, `Average`, `Late_Risk`) with weighted probabilities to simulate realistic default and late-payment distributions.
-* **Dynamic Date Logic:** Implemented forward-rolling date calculations to ensure realistic loan tenures (14 vs. 30 days) and gap days between subsequent loans.
-* **Scoring Engine:** Aggregated historical transaction data to score current active borrowers, assigning them to tailored campaign tiers based on continuous on-time repayment streaks.
+![Incremental Credit Opportunity by Segment](images/borrower_eligibility_matrix2.png)
 
-## 🚀 How to Run Locally
-1. Clone this repository.
-2. Install the required dependencies:
+By applying the 1.5x limit expansion exclusively to Tier 1 borrowers, the model projects the potential incremental credit line (in KES) available across different employment segments and regions. 
+
+**Finding:** The SME Trader segment in Nairobi represents the highest volume opportunity for safe credit expansion, with a projected 3.0M KES in safe, incremental credit lines.
+
+---
+
+## ⚙️ Methodology & Approach
+
+1. **Synthetic Data Generation:** Designed a custom Python script utilizing the `Faker` library to generate a realistic, reproducible dataset of borrower profiles and historical loan transactions denominated in KES.
+2. **Feature Engineering:** Calculated critical financial metrics for each borrower, including Average Days from Due Date and Average Credit Limit Utilization Ratio.
+3. **Logic-Based Scoring:** Built a weighted algorithmic scoring system in Pandas to evaluate borrower behavior and assign a definitive risk/campaign tier.
+4. **Data Visualization:** Deployed interactive Plotly scatter plots and bar charts to provide a clear visual matrix of borrower eligibility and projected financial opportunity.
+
+---
+
+## 💻 How to Run This Project
+
+1. **Clone this repository:**
    ```bash
-   pip install pandas numpy plotly faker
-   ```
-3. Open `Micro_Loan_Analytics.ipynb` in Jupyter Notebook.
-4. Run the cells sequentially to generate fresh datasets and render the interactive Plotly charts.
+   git clone [https://github.com/HildaKiptoo/micro-loan-eligibility-tracker.git](https://github.com/HildaKiptoo/micro-loan-eligibility-tracker.git)
