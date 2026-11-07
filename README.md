@@ -1,6 +1,6 @@
 # Microfinance Credit Risk & Eligibility Analytics
 
-![Borrower Eligibility Matrix](images/borrower_eligibility_matrix.png)
+![Borrower Eligibility Matrix](borrower_eligibility_matrix.png)
 
 ## 📌 Executive Summary
 **The Business Problem:** Microfinance institutions must balance expanding financial access with managing default risk. Lenders need a reliable, automated way to evaluate borrower repayment discipline to confidently offer credit limit expansions without exposing the business to bad debt.
